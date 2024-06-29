@@ -1,6 +1,9 @@
 FROM node:22.2-bookworm-slim
 
-RUN npm install -g npm@9.1.3
+RUN apt-get update && \
+    apt-get install -y --only-upgrade git=1:2.20.1-2+deb10u9 git-man=1:2.20.1-2+deb10u9 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 ADD package.json .
 ADD index.js .
